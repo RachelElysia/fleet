@@ -26,7 +26,7 @@ interface IHostSidePanelProps {
   ) => (evt: React.MouseEvent<HTMLButtonElement>) => void;
   selectedFilter: string | undefined;
   canAddNewLabel: boolean;
-  isLabelsLoading: boolean;
+  isLoadingLabels: boolean;
 }
 
 const HostSidePanel = ({
@@ -35,7 +35,7 @@ const HostSidePanel = ({
   onLabelClick,
   selectedFilter,
   canAddNewLabel,
-  isLabelsLoading,
+  isLoadingLabels,
 }: IHostSidePanelProps): JSX.Element => {
   const [labelFilter, setLabelFilter] = useState<string>("");
 
@@ -46,7 +46,7 @@ const HostSidePanel = ({
     [setLabelFilter]
   );
 
-  if (isLabelsLoading || !labels) {
+  if (isLoadingLabels || !labels) {
     return <Spinner />;
   }
 

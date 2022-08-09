@@ -19,6 +19,7 @@ const baseClass = "app-config-form";
 const Agents = ({
   appConfig,
   handleSubmit,
+  isUpdatingSettings,
 }: IAppConfigFormProps): JSX.Element => {
   const [formData, setFormData] = useState<any>({
     agentOptions: yaml.dump(appConfig.agent_options) || {},
@@ -105,6 +106,8 @@ const Agents = ({
         type="submit"
         variant="brand"
         disabled={Object.keys(formErrors).length > 0}
+        className="save-loading"
+        spinner={isUpdatingSettings}
       >
         Save
       </Button>
