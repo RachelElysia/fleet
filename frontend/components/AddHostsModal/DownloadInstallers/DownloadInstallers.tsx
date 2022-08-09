@@ -172,9 +172,9 @@ const DownloadInstallers = ({
         </>
       </Checkbox>
       <Button
-        className={`${baseClass}__button--download`}
         disabled={!selectedInstaller}
         onClick={() => downloadInstaller(selectedInstaller)}
+        className="download-installer-loading"
         spinner={isDownloading}
       >
         Download installer
