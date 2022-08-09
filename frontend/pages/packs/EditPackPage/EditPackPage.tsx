@@ -100,6 +100,7 @@ const EditPacksPage = ({
   const [selectedPackQueryIds, setSelectedPackQueryIds] = useState<
     number[] | never[]
   >([]);
+  const [isUpdatingPack, setIsUpdatingPack] = useState<boolean>(false);
 
   const packTargets = storedPack
     ? [
@@ -152,6 +153,7 @@ const EditPacksPage = ({
   };
 
   const handlePackFormSubmit = (formData: IFormData) => {
+    setIsUpdatingPack(true);
     const updatedPack = deepDifference(formData, storedPack);
     packsAPI
       .update(packId, updatedPack)
@@ -171,6 +173,9 @@ const EditPacksPage = ({
         } else {
           renderFlash("error", `Could not update pack. Please try again.`);
         }
+      })
+      .finally(() => {
+        setIsUpdatingPack(false);
       });
   };
 
@@ -178,6 +183,7 @@ const EditPacksPage = ({
     formData: IPackQueryFormData,
     editQuery: IScheduledQuery | undefined
   ) => {
+    setIsUpdatingPack(true);
     const request = editQuery
       ? scheduledQueriesAPI.update(editQuery, formData)
       : scheduledQueriesAPI.create(formData);
@@ -191,11 +197,13 @@ const EditPacksPage = ({
       .finally(() => {
         togglePackQueryEditorModal();
         refetchStoredPackQueries();
+        setIsUpdatingPack(false);
       });
     return false;
   };
 
   const onRemovePackQuerySubmit = () => {
+    setIsUpdatingPack(true);
     const queryOrQueries =
       selectedPackQueryIds.length === 1 ? "query" : "queries";
 
@@ -219,6 +227,7 @@ const EditPacksPage = ({
       .finally(() => {
         toggleRemovePackQueryModal();
         refetchStoredPackQueries();
+        setIsUpdatingPack(false);
       });
   };
 
@@ -239,6 +248,7 @@ const EditPacksPage = ({
             onRemovePackQueries={onRemovePackQueriesClick}
             scheduledQueries={storedPackQueries}
             isLoadingPackQueries={isStoredPackQueriesLoading}
+            isUpdatingPack={isUpdatingPack}
           />
         )}
         {showPackQueryEditorModal && fleetQueries && (
@@ -248,6 +258,7 @@ const EditPacksPage = ({
             allQueries={fleetQueries}
             editQuery={selectedPackQuery}
             packId={packId}
+            isUpdatingPack={isUpdatingPack}
           />
         )}
         {showRemovePackQueryModal && fleetQueries && (
@@ -256,6 +267,7 @@ const EditPacksPage = ({
             onSubmit={onRemovePackQuerySubmit}
             selectedQuery={selectedPackQuery}
             selectedQueryIds={selectedPackQueryIds}
+            isUpdatingPack={isUpdatingPack}
           />
         )}
       </div>
