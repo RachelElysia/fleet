@@ -175,8 +175,9 @@ const DownloadInstallers = ({
         className={`${baseClass}__button--download`}
         disabled={!selectedInstaller}
         onClick={() => downloadInstaller(selectedInstaller)}
+        spinner={isDownloading}
       >
-        {isDownloading ? <Spinner /> : "Download installer"}
+        Download installer
       </Button>
     </div>
   );
