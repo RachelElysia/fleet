@@ -105,7 +105,7 @@ const EditPackForm = ({
           onClick={onFormSubmit}
           variant="brand"
           className="save-query-pack-loading"
-          spinner={isUpdatingPack}
+          loading={isUpdatingPack}
         >
           Save query pack
         </Button>
