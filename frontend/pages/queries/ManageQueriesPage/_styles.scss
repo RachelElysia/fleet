@@ -255,7 +255,11 @@
       }
 
       &__inner-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         width: 485px;
+
         img {
           width: 12px;
           position: relative;
