@@ -175,7 +175,7 @@ const DownloadInstallers = ({
         disabled={!selectedInstaller}
         onClick={() => downloadInstaller(selectedInstaller)}
         className="download-installer-loading"
-        loading={isDownloading}
+        isLoading={isDownloading}
       >
         Download installer
       </Button>

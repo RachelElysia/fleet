@@ -105,7 +105,7 @@ const EditPackForm = ({
           onClick={onFormSubmit}
           variant="brand"
           className="save-query-pack-loading"
-          loading={isUpdatingPack}
+          isLoading={isUpdatingPack}
         >
           Save query pack
         </Button>
