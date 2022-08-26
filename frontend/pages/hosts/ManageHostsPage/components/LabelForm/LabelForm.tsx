@@ -69,11 +69,9 @@ const LabelForm = ({
 }: ILabelFormProps): JSX.Element => {
   const [name, setName] = useState<string>("");
   const [nameError, setNameError] = useState<string>("");
-  const [description, setDescription] = useState<string>(
-    selectedLabel?.description || ""
-  );
+  const [description, setDescription] = useState<string>("");
   const [descriptionError, setDescriptionError] = useState<string>("");
-  const [query, setQuery] = useState<string>(selectedLabel?.query || "");
+  const [query, setQuery] = useState<string>("");
   const [queryError, setQueryError] = useState<string>("");
   const [platform, setPlatform] = useState<string>(
     selectedLabel?.platform || ""
