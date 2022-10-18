@@ -35,7 +35,7 @@ jobs:
         rm cacert.pem
 
     - name: PR changes
-      uses: peter-evans/create-pull-request@f22a7da129c901513876a2380e2dae9f8e145330 # v3.12.1
+      uses: peter-evans/create-pull-request@b4d51739f96fca8047ad065eccef63442d8e99f7 # v3.12.1
       with:
         base: main
         branch: update-ca-certs
