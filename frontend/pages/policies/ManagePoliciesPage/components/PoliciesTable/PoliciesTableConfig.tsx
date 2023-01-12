@@ -97,6 +97,10 @@ const generateTableHeaders = (options: {
 }): IDataColumn[] => {
   const { selectedTeamId, tableType, canAddOrDeletePolicy } = options;
 
+  const mdmRequired = (query: string) => {
+    return query.includes("managed_policies");
+  };
+
   const tableHeaders: IDataColumn[] = [
     {
       title: "Name",
@@ -104,11 +108,16 @@ const generateTableHeaders = (options: {
       disableSortBy: true,
       accessor: "name",
       Cell: (cellProps: ICellProps): JSX.Element => (
-        <LinkCell
-          classes="w250"
-          value={cellProps.cell.value}
-          path={PATHS.EDIT_POLICY(cellProps.row.original)}
-        />
+        <>
+          <LinkCell
+            classes="w250"
+            value={cellProps.cell.value}
+            path={PATHS.EDIT_POLICY(cellProps.row.original)}
+          />
+          {mdmRequired(cellProps.row.original.query) && (
+            <span>REQUIRES MDM</span>
+          )}
+        </>
       ),
     },
     {
