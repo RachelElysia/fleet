@@ -77,7 +77,7 @@ const HostSummary = ({
           backgroundColor="#3e4771"
         >
           <span className={`${baseClass}__tooltip-text`}>
-            You can’t fetch data from <br /> an offline host.
+            You can&apos;t fetch data from <br /> an offline host.
           </span>
         </ReactTooltip>
       </>

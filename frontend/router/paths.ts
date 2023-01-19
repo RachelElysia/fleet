@@ -1,4 +1,3 @@
-import { IHost } from "../interfaces/host";
 import { IQuery } from "../interfaces/query";
 import { IPolicy } from "../interfaces/policy";
 import URL_PREFIX from "./url_prefix";

@@ -53,7 +53,7 @@ const ActivityFeed = ({
     {
       keepPreviousData: true,
       staleTime: 5000,
-      onSuccess: (data) => {
+      onSuccess: () => {
         setShowActivityFeedTitle(true);
       },
       onError: () => {

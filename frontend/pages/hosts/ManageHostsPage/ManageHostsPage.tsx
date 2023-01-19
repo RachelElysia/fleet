@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect, useCallback } from "react";
-import { IconNames } from "components/icons";
 import { useQuery } from "react-query";
 import { InjectedRouter, Params } from "react-router/lib/Router";
 import { RouteProps } from "react-router/lib/Route";
@@ -283,13 +282,15 @@ const ManageHostsPage = ({
   const {
     isLoading: isLoadingLabels,
     data: labels,
-    error: labelsError,
     refetch: refetchLabels,
   } = useQuery<ILabelsResponse, Error, ILabel[]>(
     ["labels"],
     () => labelsAPI.loadAll(),
     {
       select: (data: ILabelsResponse) => data.labels,
+      onError: () => {
+        setHasHostErrors(true);
+      },
     }
   );
 
@@ -1657,6 +1658,7 @@ const ManageHostsPage = ({
       isHostCountLoading ||
       isHostsLoading ||
       isLoadingPolicy ||
+      isLoadingLabels ||
       !teamSync
     ) {
       return <Spinner />;

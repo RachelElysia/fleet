@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useContext } from "react";
-import { IconNames } from "components/icons";
 import { useQuery } from "react-query";
 import { useErrorHandler } from "react-error-boundary";
 
