@@ -14,7 +14,6 @@ import {
   IPolicyStats,
   ILoadAllPoliciesResponse,
   ILoadTeamPoliciesResponse,
-  IPolicy,
 } from "interfaces/policy";
 import { ITeamConfig } from "interfaces/team";
 
@@ -23,6 +22,7 @@ import configAPI from "services/entities/config";
 import globalPoliciesAPI from "services/entities/global_policies";
 import teamPoliciesAPI from "services/entities/team_policies";
 import teamsAPI, { ILoadTeamResponse } from "services/entities/teams";
+import automationsAPI from "services/entities/automations";
 
 import Button from "components/buttons/Button";
 import RevealButton from "components/buttons/RevealButton";
@@ -210,11 +210,29 @@ const ManagePolicyPage = ({
   const toggleShowInheritedPolicies = () =>
     setShowInheritedPolicies(!showInheritedPolicies);
 
+  // const handleUpdateAutomations = async (requestBody: {
+  //   webhook_settings: Pick<IWebhookSettings, "failing_policies_webhook">;
+  //   integrations: IIntegrations;
+  //   newlyEnabledPolicyIds: number[];
+  // }) => {
   const handleUpdateAutomations = async (requestBody: {
     webhook_settings: Pick<IWebhookSettings, "failing_policies_webhook">;
     integrations: IIntegrations;
+    newlyEnabledPolicyIds?: number[];
   }) => {
     setIsUpdatingAutomations(true);
+
+    //       try {
+    //     await (automationsAPI.resetAutomations({policy_ids: requestBody.newlyEnabledPolicyIds}));
+    //   } catch {
+    //     renderFlash(
+    //       "error",
+    //       "Could not reset policy automations. Please try again."
+    //     );
+    //   }
+    // };
+
+    delete requestBody.newlyEnabledPolicyIds;
     try {
       await (teamId
         ? teamsAPI.update(requestBody, teamId)

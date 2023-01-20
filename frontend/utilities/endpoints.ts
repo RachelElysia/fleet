@@ -46,6 +46,7 @@ export default {
   PERFORM_REQUIRED_PASSWORD_RESET: `/${API_VERSION}/fleet/perform_required_password_reset`,
   QUERIES: `/${API_VERSION}/fleet/queries`,
   RESET_PASSWORD: `/${API_VERSION}/fleet/reset_password`,
+  RESET_AUTOMATIONS: `/${API_VERSION}/fleet/automations/reset`,
   RUN_QUERY: `/${API_VERSION}/fleet/queries/run`,
   SCHEDULE_QUERY: `/${API_VERSION}/fleet/packs/schedule`,
   SCHEDULED_QUERIES: (packId: number): string => {

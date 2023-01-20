@@ -32,6 +32,7 @@ interface IManageAutomationsModalProps {
   handleSubmit: (formData: {
     webhook_settings: Pick<IWebhookSettings, "failing_policies_webhook">;
     integrations: IIntegrations;
+    newlyEnabledPolicyIds: number[];
   }) => void;
   togglePreviewPayloadModal: () => void;
 }
@@ -236,12 +237,18 @@ const ManageAutomationsModal = ({
       },
     };
 
+    const initialEnabledPolicyIds = webhook?.policy_ids || [];
+    const newlyEnabledPolicyIds = newPolicyIds.filter(
+      (policy_id) => !initialEnabledPolicyIds.includes(policy_id)
+    );
+
     handleSubmit({
       webhook_settings: newWebhook,
       integrations: {
         jira: newJira,
         zendesk: newZendesk,
       },
+      newlyEnabledPolicyIds,
     });
 
     setErrors(newErrors);
