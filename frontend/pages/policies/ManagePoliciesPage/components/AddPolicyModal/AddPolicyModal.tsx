@@ -1,6 +1,7 @@
 import React, { useCallback, useContext } from "react";
 import PATHS from "router/paths";
 import { InjectedRouter } from "react-router/lib/Router";
+import ReactTooltip from "react-tooltip";
 
 import { DEFAULT_POLICY, DEFAULT_POLICIES } from "pages/policies/constants";
 
@@ -11,6 +12,7 @@ import { PolicyContext } from "context/policy";
 
 import Button from "components/buttons/Button";
 import Modal from "components/Modal";
+import CustomLink from "components/CustomLink";
 
 export interface IAddPolicyModalProps {
   onCancel: () => void;
@@ -71,7 +73,36 @@ const AddPolicyModal = ({
           <div className={`${baseClass}__policy-name`}>
             <span className="info__header">{policy.name}</span>
             {policy.mdm_required && (
-              <span className={`${baseClass}__mdm-policy`}>Requires MDM</span>
+              <>
+                <span
+                  className={`${baseClass}__mdm-policy`}
+                  data-tip
+                  data-for="mdm-tooltip"
+                >
+                  MDM
+                </span>
+                <ReactTooltip
+                  className="tooltip"
+                  place="top"
+                  type="dark"
+                  effect="solid"
+                  id="mdm-tooltip"
+                  backgroundColor="#3e4771"
+                  clickable
+                  delayHide={200} // need delay set to hover using clickable
+                >
+                  <>
+                    This table requires MDM settings <br />
+                    to be enabled.{" "}
+                    <CustomLink
+                      url="https://fleetdm.com/docs/using-fleet/configuration-files#mobile-device-management-mdm-settings"
+                      text="Learn more"
+                      newTab
+                      iconColor="core-fleet-white"
+                    />
+                  </>
+                </ReactTooltip>
+              </>
             )}
           </div>
           <span className="info__data">{policy.description}</span>

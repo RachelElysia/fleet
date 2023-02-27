@@ -8,6 +8,7 @@ import ReactTooltip from "react-tooltip";
 import Checkbox from "components/forms/fields/Checkbox";
 import LinkCell from "components/TableContainer/DataTable/LinkCell/LinkCell";
 import StatusIndicator from "components/StatusIndicator";
+import CustomLink from "components/CustomLink";
 import { IPolicyStats } from "interfaces/policy";
 import PATHS from "router/paths";
 import sortUtils from "utilities/sort";
@@ -98,7 +99,7 @@ const generateTableHeaders = (options: {
   const { selectedTeamId, tableType, canAddOrDeletePolicy } = options;
 
   const mdmRequired = (query: string) => {
-    return query.includes("managed_policies");
+    return query.includes("managed_policies") || query.includes("mdm_bridge");
   };
 
   const tableHeaders: IDataColumn[] = [
@@ -111,12 +112,45 @@ const generateTableHeaders = (options: {
         <>
           <LinkCell
             classes="w250"
-            value={cellProps.cell.value}
+            value={
+              <>
+                {cellProps.cell.value}{" "}
+                {mdmRequired(cellProps.row.original.query) && (
+                  <>
+                    <span
+                      className="mdm-required"
+                      data-tip
+                      data-for={`tooltip-${cellProps.row.original.id}`}
+                    >
+                      MDM
+                    </span>
+                    <ReactTooltip
+                      className={"mdm-tooltip"}
+                      place="top"
+                      type="dark"
+                      effect="solid"
+                      id={`tooltip-${cellProps.row.original.id}`}
+                      backgroundColor="#3e4771"
+                      clickable
+                      delayHide={200} // need delay set to hover using clickable
+                    >
+                      <>
+                        This policy requires MDM settings <br />
+                        to be enabled.{" "}
+                        <CustomLink
+                          url="https://fleetdm.com/docs/using-fleet/configuration-files#mobile-device-management-mdm-settings"
+                          text="Learn more"
+                          newTab
+                          iconColor="core-fleet-white"
+                        />
+                      </>
+                    </ReactTooltip>
+                  </>
+                )}
+              </>
+            }
             path={PATHS.EDIT_POLICY(cellProps.row.original)}
           />
-          {mdmRequired(cellProps.row.original.query) && (
-            <span>REQUIRES MDM</span>
-          )}
         </>
       ),
     },

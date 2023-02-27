@@ -1,4 +1,5 @@
 import React from "react";
+import ReactTooltip from "react-tooltip";
 
 import { IOsQueryTable } from "interfaces/osquery_table";
 import { osqueryTableNames } from "utilities/osquery_tables";
@@ -40,7 +41,7 @@ const QuerySidePanel = ({
     evented,
   } = selectedOsqueryTable;
 
-  const mdmRequired = name === "managed_policies";
+  const mdmRequired = name === "managed_policies" || name === "mdm_bridge";
 
   const onSelectTable = (value: string) => {
     onOsqueryTableSelect(value);
@@ -83,7 +84,36 @@ const QuerySidePanel = ({
       </div>
       {evented && <EventedTableTag selectedTableName={name} />}
       {mdmRequired && (
-        <span className={`${baseClass}__mdm-required`}>Requires MDM</span>
+        <>
+          <span
+            className={`${baseClass}__mdm-required`}
+            data-tip
+            data-for="mdm-tooltip"
+          >
+            MDM
+          </span>
+          <ReactTooltip
+            className="tooltip"
+            place="top"
+            type="dark"
+            effect="solid"
+            id="mdm-tooltip"
+            backgroundColor="#3e4771"
+            clickable
+            delayHide={200} // need delay set to hover using clickable
+          >
+            <>
+              This table requires MDM settings <br />
+              to be enabled.{" "}
+              <CustomLink
+                url="https://fleetdm.com/docs/using-fleet/configuration-files#mobile-device-management-mdm-settings"
+                text="Learn more"
+                newTab
+                iconColor="core-fleet-white"
+              />
+            </>
+          </ReactTooltip>
+        </>
       )}
       <div className={`${baseClass}__description`}>
         <FleetMarkdown markdown={description} />
