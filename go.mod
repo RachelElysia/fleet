@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	cloud.google.com/go/pubsub v1.30.0
-	github.com/AbGuthrie/goquery/v2 v2.0.1
+	github.com/AbGuthrie/goquery/v2 v2.0.4
 	github.com/DATA-DOG/go-sqlmock v1.5.0
 	github.com/Masterminds/semver v1.5.0
 	github.com/VividCortex/mysqlerr v0.0.0-20170204212430-6c6b55f8796f
@@ -243,7 +243,6 @@ require (
 	github.com/jonboulle/clockwork v0.2.2 // indirect
 	github.com/kevinburke/ssh_config v1.1.0 // indirect
 	github.com/klauspost/compress v1.15.11 // indirect
-	github.com/lib/pq v1.10.6 // indirect
 	github.com/lufia/plan9stats v0.0.0-20211012122336-39d0f177ccd0 // indirect
 	github.com/magiconair/properties v1.8.5 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
@@ -261,7 +260,7 @@ require (
 	github.com/oschwald/maxminddb-golang v1.10.0 // indirect
 	github.com/oxtoacart/bpool v0.0.0-20190530202638-03653db5a59c // indirect
 	github.com/pelletier/go-toml v1.9.3 // indirect
-	github.com/pkg/term v0.0.0-20190109203006-aa71e9d9e942 // indirect
+	github.com/pkg/term v0.0.0-20200520122047-c3ffed290a03 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/power-devops/perfstat v0.0.0-20210106213030-5aafc221ea8c // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
@@ -293,7 +292,6 @@ require (
 	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
 	github.com/yashtewari/glob-intersection v0.1.0 // indirect
 	github.com/yusufpapurcu/wmi v1.2.2 // indirect
-	github.com/ziutek/mymysql v1.5.4 // indirect
 	go.elastic.co/apm v1.15.0 // indirect
 	go.elastic.co/apm/module/apmhttp/v2 v2.3.0 // indirect
 	go.elastic.co/fastjson v1.1.0 // indirect
