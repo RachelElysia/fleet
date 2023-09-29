@@ -816,6 +816,7 @@ const HostDetailsPage = ({
             onQueryHostCustom={onQueryHostCustom}
             onQueryHostSaved={onQueryHostSaved}
             hostsTeamId={host?.team_id}
+            hostPlatform={host?.platform}
           />
         )}
         {!!host && showTransferHostModal && (

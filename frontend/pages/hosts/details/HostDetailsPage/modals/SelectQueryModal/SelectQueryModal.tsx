@@ -20,6 +20,7 @@ export interface ISelectQueryModalProps {
   queryErrors: Error | null;
   isOnlyObserver?: boolean;
   hostsTeamId: number | null;
+  hostPlatform: string;
 }
 
 const baseClass = "select-query-modal";
@@ -32,10 +33,13 @@ const SelectQueryModal = ({
   queryErrors,
   isOnlyObserver,
   hostsTeamId,
+  hostPlatform,
 }: ISelectQueryModalProps): JSX.Element => {
   let queriesAvailableToRun = queries;
 
   const { currentUser, isObserverPlus } = useContext(AppContext);
+
+  const [compatibleFilter, setCompatibleFilter] = useState(false);
 
   /*  Context team id might be different that host's team id
   Observer plus must be checked against host's team id  */
@@ -77,7 +81,9 @@ const SelectQueryModal = ({
   );
 
   const queriesFiltered = getQueries();
-
+  const compatibleQueries = queriesFiltered.filter((query) =>
+    query.platform.includes(hostPlatform)
+  );
   const queriesCount = queriesFiltered.length;
 
   const customQueryButton = () => {
@@ -131,6 +137,24 @@ const SelectQueryModal = ({
           </Button>
         );
       });
+
+      const compatibleQueryList = compatibleQueries.map((query) => {
+        return (
+          <Button
+            key={query.id}
+            variant="unstyled-modal-query"
+            className={`${baseClass}__modal-query-button`}
+            onClick={() => onQueryHostSaved(query)}
+          >
+            <>
+              <span className="info__header">{query.name}</span>
+              {query.description && (
+                <span className="info__data">{query.description}</span>
+              )}
+            </>
+          </Button>
+        );
+      });
       return (
         <div>
           <div className={`${baseClass}__filter-create-wrapper`}>
@@ -152,7 +176,32 @@ const SelectQueryModal = ({
               </div>
             )}
           </div>
-          <div>{queryList}</div>
+          <div>
+            {!compatibleFilter ? (
+              <>
+                Showing all queries available to this host.
+                <Button
+                  onClick={() => setCompatibleFilter(!compatibleFilter)}
+                  variant="inverse"
+                  className={`${baseClass}__custom-query-button`}
+                >
+                  Filter for compatible queries
+                </Button>
+              </>
+            ) : (
+              <>
+                Showing queries compatible with {hostPlatform}.
+                <Button
+                  onClick={() => setCompatibleFilter(!compatibleFilter)}
+                  variant="inverse"
+                  className={`${baseClass}__custom-query-button`}
+                >
+                  Show all queries
+                </Button>
+              </>
+            )}
+          </div>
+          <div>{compatibleFilter ? queryList : compatibleQueryList}</div>
         </div>
       );
     }
