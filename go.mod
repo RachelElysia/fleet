@@ -37,7 +37,7 @@ require (
 	github.com/go-ole/go-ole v1.2.6
 	github.com/go-sql-driver/mysql v1.7.1
 	github.com/gocarina/gocsv v0.0.0-20220310154401-d4df709ca055
-	github.com/golang-jwt/jwt/v4 v4.4.2
+	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/gomodule/redigo v1.8.9
 	github.com/google/go-cmp v0.5.9
 	github.com/google/go-github/v37 v37.0.0
