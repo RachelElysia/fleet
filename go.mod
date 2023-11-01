@@ -17,7 +17,7 @@ require (
 	github.com/beevik/ntp v0.3.0
 	github.com/briandowns/spinner v1.13.0
 	github.com/cenkalti/backoff v2.2.1+incompatible
-	github.com/cenkalti/backoff/v4 v4.2.0
+	github.com/cenkalti/backoff/v4 v4.2.1
 	github.com/davecgh/go-spew v1.1.1
 	github.com/dgraph-io/badger/v2 v2.2007.2
 	github.com/digitalocean/go-smbios v0.0.0-20180907143718-390a4f403a8e
