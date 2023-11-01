@@ -92,7 +92,7 @@ require (
 	github.com/theupdateframework/go-tuf v0.5.0
 	github.com/throttled/throttled/v2 v2.8.0
 	github.com/tj/assert v0.0.3
-	github.com/ulikunitz/xz v0.5.10
+	github.com/ulikunitz/xz v0.5.11
 	github.com/urfave/cli/v2 v2.23.5
 	github.com/valyala/fasthttp v1.40.0
 	go.elastic.co/apm/module/apmgorilla/v2 v2.3.0
