@@ -55,7 +55,9 @@ interface ISoftwareOSDetailsPageProps {
 const SoftwareOSDetailsPage = ({ location }: ISoftwareOSDetailsPageProps) => {
   const name = location.query.name;
   const osVersion = location.query.version;
-  const { data, isLoading, isError } = useQuery<
+
+  // This API returns the same as the all os_versions but with a count: 1 and an os_verions: array with 1 object
+  const { data: osVersionDetails, isLoading, isError } = useQuery<
     IOSVersionsResponse,
     Error,
     IOperatingSystemVersion
@@ -67,11 +69,8 @@ const SoftwareOSDetailsPage = ({ location }: ISoftwareOSDetailsPageProps) => {
     }
   );
 
-  const osVersionDetails = data;
-
-  console.log("osVersionDetails", osVersionDetails);
-
   const renderTable = () => {
+    // TODO: What should the user see if the API returns an empty array?
     if (!osVersionDetails) {
       return null;
     }
