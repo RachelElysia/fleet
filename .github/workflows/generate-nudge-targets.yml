@@ -40,7 +40,7 @@ jobs:
         run: make nudge-app-tar-gz version=$NUDGE_VERSION out-path=.
 
       - name: Upload nudge.app.tar.gz
-        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v2
+        uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392 # v2
         with:
           name: nudge.app.tar.gz
           path: nudge.app.tar.gz
