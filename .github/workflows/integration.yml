@@ -343,7 +343,7 @@ jobs:
 
     - name: Download MSI
       id: download
-      uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741 # v2
+      uses: actions/download-artifact@f44cd7b40bfd40b6aa1cc1b9b5b7bf03d3c67110 # v2
       with:
         name: orbit-${{ matrix.orbit-channel }}-osqueryd-${{ matrix.osqueryd-channel }}-desktop-${{ matrix.desktop-channel }}.msi
 
