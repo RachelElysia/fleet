@@ -141,10 +141,10 @@ const SoftwarePage = ({ children, router, location }: ISoftwarePageProps) => {
     queryParams?.order_direction === undefined
       ? DEFAULT_SORT_DIRECTION
       : queryParams.order_direction;
-  const initialPage = (() =>
+  const initialPage =
     queryParams && queryParams.page
       ? parseInt(queryParams.page, 10)
-      : DEFAULT_PAGE)();
+      : DEFAULT_PAGE;
   // TODO: move these down into the Software Titles component.
   const query = queryParams && queryParams.query ? queryParams.query : "";
   const showExploitedVulnerabilitiesOnly =
