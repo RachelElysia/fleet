@@ -1,7 +1,7 @@
 import requests
 import re
 
-FILE_PATH = 'utilities/constants.ts'
+FILE_PATH = 'frontend/utilities/constants.ts'
 
 def fetch_osquery_versions():
     response = requests.get('https://api.github.com/repos/osquery/osquery/releases')
