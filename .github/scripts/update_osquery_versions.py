@@ -4,13 +4,8 @@ import re
 
 # Use GITHUB_WORKSPACE to get the root of your repository
 repo_root = os.environ.get('GITHUB_WORKSPACE', '')
-FILE_PATH = os.path.join(repo_root, 'frontend', 'utilities', 'constants.ts')
+FILE_PATH = os.path.join(repo_root, 'frontend', 'utilities', 'constants.tsx')
 
-
-print(f"Repository root: {repo_root}")
-print(f"File path: {FILE_PATH}")
-print(f"Current working directory: {os.getcwd()}")
-print(f"Directory contents: {os.listdir(os.getcwd())}")
 
 def fetch_osquery_versions():
     response = requests.get('https://api.github.com/repos/osquery/osquery/releases')
@@ -48,14 +43,5 @@ def update_min_osquery_version_options(new_versions):
         print("No new versions to add.")
 
 if __name__ == "__main__":
-    if os.path.exists(FILE_PATH):
-        print(f"File found at {FILE_PATH}")
-        new_versions = fetch_osquery_versions()
-        update_min_osquery_version_options(new_versions)
-    else:
-        print(f"File not found at {FILE_PATH}")
-        print(f"Contents of {os.path.dirname(FILE_PATH)}:")
-        print(os.listdir(os.path.dirname(FILE_PATH)))
-
     new_versions = fetch_osquery_versions()
     update_min_osquery_version_options(new_versions)
